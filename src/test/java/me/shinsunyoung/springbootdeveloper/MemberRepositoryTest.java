@@ -44,4 +44,29 @@ class MemberRepositoryTest {
         // then
         assertThat(member.getId()).isEqualTo(3);
     }
+
+    @Test       // 이미 추가된 데이터가 있으면 안 되므로, @Sql 어노테이션 사용 X
+    void saveMember() {
+        // given
+        Member member = new Member(1L, "A");
+
+        // when
+        memberRepository.save(member);
+
+        // then
+        assertThat(memberRepository.findById(1L).get().getName()).isEqualTo("A");
+    }
+
+    @Test
+    void saveMembers() {
+        // given
+        List<Member> members = List.of(new Member(2L, "B"),
+                new Member(3L, "C"));
+
+        // when
+        memberRepository.saveAll(members);
+
+        // then
+        assertThat(memberRepository.findAll().size()).isEqualTo(2);
+    }
 }
