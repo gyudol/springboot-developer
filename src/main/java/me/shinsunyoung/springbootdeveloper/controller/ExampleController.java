@@ -17,6 +17,7 @@ public class ExampleController {
         Person examplePerson = new Person();
         examplePerson.setId(1L);
         examplePerson.setName("홍길동");
+        examplePerson.setAge(11);
         examplePerson.setHobbies(List.of("운동", "독서"));
 
         model.addAttribute("person", examplePerson);    // Person 객체 저장
